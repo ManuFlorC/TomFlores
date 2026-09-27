@@ -1,1 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emmanuel Flores Campos | Multifacético</title>
+    <style>
+        :root {
+            --bg-color: #0d0d0d;
+            --text-color: #ffffff;
+            --accent-color: #a3a3a3;
+            --line-color: #333333;
+        }
 
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: '-apple-system', BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        /* Contenedor Principal estilo Árbol */
+        .tree-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        /* NÚCLEO: Tu Foto al Centro */
+        .profile-core {
+            position: relative;
+            z-index: 10;
+            margin-bottom: 80px; /* Espacio para las líneas conectoras */
+            text-align: center;
+        }
+
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--text-color);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+            transition: transform 0.5s ease;
+        }
+
+        .profile-pic:hover {
+            transform: scale(1.05);
+        }
+
+        .profile-core h1 {
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            margin-top: 15px;
+            text-transform: uppercase;
+        }
+
+        /* Ramas / Facetas */
+        .branches {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            position: relative;
+        }
+
+        /* Líneas del Árbol (Solo visibles en pantallas grandes) */
+        .branches::before {
+            content: '';
+            position: absolute;
+            top: -80px;
+            left: 50%;
+            width: 2px;
+            height: 40px;
+            background-color: var(--line-color);
+            transform: translateX(-50%);
+        }
+
+        .branches::after {
+            content: '';
+            position: absolute;
+            top: -40px;
+            left: 16.6%;
+            right: 16.6%;
+            height: 2px;
+            background-color: var(--line-color);
+        }
+
+        .branch-line-down {
+            position: absolute;
+            top: -40px;
+            width: 2px;
+            height: 40px;
+            background-color: var(--line-color);
+        }
+        .b-left { left: 16.6%; }
+        .b-center { left: 50%; transform: translateX(-50%); }
+        .b-right { right: 16.6%; }
+
+        /* Tarjetas de cada Faceta */
+        .facet-card {
+            flex: 1;
+            margin: 0 15px;
+            padding: 30px 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 5;
+        }
+
+        .facet-card:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: var(--accent-color);
+            transform: translateY(-5px);
+        }
+
+        .facet-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .facet-card h2 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .facet-card p {
+            font-size: 0.85rem;
+            color: var(--accent-color);
+            line-height: 1.4;
+            font-weight: 300;
+        }
+
+        /* Diseño Responsivo para Celulares */
+        @media (max-width: 768px) {
+            .branches {
+                flex-direction: column;
+                gap: 30px;
+            }
+            .facet-card {
+                margin: 0;
+            }
+            /* Ocultamos las líneas del árbol en móvil para que se vea limpio en vertical */
+            .branches::before, .branches::after, .branch-line-down {
+                display: none;
+            }
+            .profile-core {
+                margin-bottom: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="tree-container">
+        
+        <!-- NÚCLEO PRINCIPAL -->
+        <div class="profile-core">
+            <!-- Reemplaza 'tu-foto.jpg' por la ruta de tu imagen -->
+            <img src="tu-foto.jpeg" alt="Tu Nombre" class="profile-pic">
+            <h1>Emmanuel Flores Campos</h1>
+        </div>
+
+        <!-- LAS TRES FACETAS (RAMAS) -->
+        <div class="branches">
+            <!-- Líneas decorativas -->
+            <div class="branch-line-down b-left"></div>
+            <div class="branch-line-down b-center"></div>
+            <div class="branch-line-down b-right"></div>
+
+            <!-- Faceta 1: Ingeniero -->
+            <a href="/ingeniero" class="facet-card">
+                <span class="facet-icon">💻</span>
+                <h2>Ingeniero</h2>
+                <p>Especialista en control de procesos</p>
+            </a>
+
+            <!-- Faceta 2: Músico -->
+            <a href="/musico" class="facet-card">
+                <span class="facet-icon">🎵</span>
+                <h2>Músico Conceptual</h2>
+                <p>La música como catarsis personal.</p>
+            </a>
+
+            <!-- Faceta 3: Arquero -->
+            <a href="/arquero" class="facet-card">
+                <span class="facet-icon">🏹</span>
+                <h2>Tiro con Arco</h2>
+                <p>Disciplina, enfoque y concentración en el deporte de precisión.</p>
+            </a>
+
+        </div>
+    </div>
+
+</body>
+</html>
